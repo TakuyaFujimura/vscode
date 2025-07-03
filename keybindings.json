@@ -1,0 +1,196 @@
+// 既定値を上書きするには、このファイル内にキー バインドを挿入します
+[
+    // コマンドパレット上の上下移動
+    // {"key": "ctrl+j", "command": "workbench.action.quickOpenSelectNext", "when": "inQuickOpen"},
+    // {
+    //     "key": "ctrl+k",
+    //     "command": "workbench.action.quickOpenSelectPrevious",
+    //     "when": "inQuickOpen"
+    // },
+    //　補完リスト上の上下移動
+    {"key": "ctrl+j", "command": "selectNextSuggestion", "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"},
+    {"key": "ctrl+k", "command": "selectPrevSuggestion", "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"},
+    // コメントアウト
+    {
+        "key": "g c",
+        "command": "editor.action.commentLine",
+        "when": "editorTextFocus && !editorReadonly && neovim.mode != 'insert'"
+    },
+    // ==================================================
+    // NERD Tree風
+    // ==================================================
+    // サイドバーの表示トグル(サイドバーの表示・非表示)
+    {
+        "key": "ctrl+d",
+        "command": "workbench.view.explorer",
+        "when": "!explorerViewletVisible && vim.mode != 'SearchInProgressMode' && vim.mode != 'Insert'"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "explorerViewletVisible && !searchViewletVisible && !inDebugMode && vim.mode != 'SearchInProgressMode' && vim.mode != 'Insert'"
+    },
+    // サイドバーフォーカストグル(サイドバーは表示したまま，フォーカスを切り替え)
+    {
+        "key": "ctrl+w r",
+        "command": "workbench.action.focusSideBar",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+w r",
+        "command": "workbench.action.focusFirstEditorGroup",
+        "when": "!editorFocus"
+    },
+
+    // --- ファイルシステム系 ---
+    // "m + m"でリネーム
+    {
+        "key": "m m",
+        "command": "renameFile",
+        "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+    },
+    // "m + c"でコピー
+    {
+        "key": "m c",
+        "command": "filesExplorer.copy",
+        "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+    },
+    // "m + p"でペースト
+    {
+        "key": "m p",
+        "command": "filesExplorer.paste",
+        "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+    },
+    // "m + a"でファイル追加
+    {
+        "key": "m a",
+        "command": "explorer.newFile",
+        "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+    },
+    // "m + d"で削除
+    {
+        "key": "m d",
+        "command": "deleteFile",
+        "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+    },
+    // "m + f"でフォルダ追加
+    {
+        "key": "m f",
+        "command": "explorer.newFolder",
+        "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+    },
+    // "s"で横分割で開く
+    {
+        "key": "s",
+        "command": "explorer.openToSide",
+        "when": "explorerViewletFocus && explorerViewletVisible && !explorerResourceIsFolder && !inputFocus"
+    },
+    // "i"で縦分割で開く
+    {
+        "key": "i",
+        "command": "workbench.action.splitEditorDown",
+        "when": "explorerViewletFocus && explorerViewletVisible && !explorerResourceIsFolder && !inputFocus"
+    },
+    // 最大2分割しかしないと仮定して
+    {
+        "key": "ctrl+w h",
+        "command": "workbench.action.focusFirstEditorGroup"
+    },
+    {
+        "key": "ctrl+w l",
+        "command": "workbench.action.focusSecondEditorGroup"
+    },
+    // 上下の移動
+    {
+        "key": "ctrl+w j",
+        "command": "workbench.action.navigateDown"
+    },
+    {
+        "key": "ctrl+w k",
+        "command": "workbench.action.navigateUp"
+    },
+    // Ctrl + tabでも移動できる
+    {
+        "key": "g t",
+        "command": "workbench.action.nextEditor",
+        "when": "editorTextFocus && neovim.mode != 'insert'"
+    },
+    {
+        "key": "g shift+t",
+        "command": "workbench.action.previousEditor",
+        "when": "editorTextFocus && neovim.mode != 'insert'"
+    },
+    //よくうち間違えるので
+    // {
+    //     "key": "ctrl+w ctrl+h",
+    //     "command": "workbench.action.focusFirstEditorGroup"
+    // },
+    // {
+    //     "key": "ctrl+w ctrl+l",
+    //     "command": "workbench.action.focusSecondEditorGroup"
+    // },
+    // {
+    //     "key": "cmd+/",
+    //     "command": "editor.action.commentLine",
+    //     "when": "editorTextFocus && !editorReadonly"
+    // },
+    // {
+    //     "key": "cmd+/",
+    //     "command": "-editor.action.commentLine",
+    //     "when": "editorTextFocus && !editorReadonly"
+    // },
+    {
+        "key": "ctrl+l",
+        "command": "editor.action.inlineSuggest.acceptNextWord",
+        "when": "inlineSuggestionVisible && !editorReadonly"
+    },
+    // {
+    //     "key": "cmd+right",
+    //     "command": "-editor.action.inlineSuggest.acceptNextWord",
+    //     "when": "inlineSuggestionVisible && !editorReadonly"
+    // },
+    // {
+    //     "key": "ctrl+f",
+    //     "command": "editor.action.pageDownHover",
+    //     "when": "editorHoverFocused"
+    // },
+    {
+        "key": "g g",
+        "command": "cursorTop",
+        "when": "editorTextFocus && neovim.mode != 'insert'"
+        // "when": "textInputFocus"
+    },
+    {
+        "key": "cmd+b d",
+        "command": "workbench.action.toggleSidebarVisibility"
+    },
+    {
+        "key": "cmd+b",
+        "command": "-workbench.action.toggleSidebarVisibility"
+    }
+    // {
+    //     "key": "g g",
+    //     "command": "list.focusFirst",
+    //     "when": "listFocus && !inputFocus"
+    // },
+    // {
+    //     "key": "g g",
+    //     "command": "-list.focusFirst",
+    //     "when": "listFocus && !inputFocus"
+    // },
+    // {
+    //     "key": "g g",
+    //     "command": "editor.action.goToTopHover",
+    //     "when": "editorHoverFocused"
+    // },
+    // {
+    //     "key": "cmd+up",
+    //     "command": "-editor.action.goToTopHover",
+    //     "when": "editorHoverFocused"
+    // },
+    // {
+    //     "key": "g g",
+    //     "command": "-editor.action.goToTopHover",
+    //     "when": "editorHoverFocused"
+    // },
+]
